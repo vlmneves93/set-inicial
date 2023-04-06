@@ -1,0 +1,483 @@
+-- Function By LuanLuciano93 TibiaKing---
+function createBonusCondition(id, params)
+    local condition = Condition(CONDITION_ATTRIBUTES, CONDITIONID_DEFAULT)
+    condition:setParameter(CONDITION_PARAM_TICKS, -1)
+    condition:setParameter(CONDITION_PARAM_SUBID, id)
+    for i = 1, #params do
+        local param = params[i].param
+        local value = params[i].value
+        condition:setParameter(param, value)
+    end
+    return condition
+end
+ 
+function createBonusConditionSpeed(id, speed)
+    local condition = Condition(CONDITION_HASTE, CONDITIONID_DEFAULT)
+    condition:setParameter(CONDITION_PARAM_TICKS, -1)
+    condition:setParameter(CONDITION_PARAM_SUBID, id)
+    condition:setParameter(CONDITION_PARAM_SPEED, speed * 2)
+    return condition
+end
+
+bonusTier = {
+    [1] = {
+        vocations = {
+            [{1, 5}] = createBonusCondition(1, { -- sorcerer Buff 1
+                {param = CONDITION_PARAM_STAT_MAXMANAPOINTS, value = 120},
+                {param = CONDITION_PARAM_STAT_MAXHITPOINTS, value = 20}
+            }),
+            [{2, 6}] = createBonusCondition(2, { -- druid Buff 1
+                {param = CONDITION_PARAM_STAT_MAXMANAPOINTS, value = 120},
+                {param = CONDITION_PARAM_STAT_MAXHITPOINTS, value = 20}
+            }),
+            [{3, 7}] = createBonusCondition(3, { -- paladin Buff 1
+                {param = CONDITION_PARAM_STAT_MAXMANAPOINTS, value = 60},
+                {param = CONDITION_PARAM_STAT_MAXHITPOINTS, value = 40}
+            }),
+            [{4, 8}] = createBonusCondition(4, { -- knight Buff 1
+                {param = CONDITION_PARAM_STAT_MAXMANAPOINTS, value = 40},
+                {param = CONDITION_PARAM_STAT_MAXHITPOINTS, value = 60}
+            })
+        }
+    },
+    [2] = {
+        vocations = {
+            [{1, 5}] = createBonusCondition(5, { -- sorcerer Buff 2
+                {param = CONDITION_PARAM_STAT_MAXMANAPOINTS, value = 180},
+                {param = CONDITION_PARAM_STAT_MAGICPOINTS, value = 1},
+                {param = CONDITION_PARAM_STAT_MAXHITPOINTS, value = 30}
+            }),
+            [{2, 6}] = createBonusCondition(6, { -- druid Buff 2
+                {param = CONDITION_PARAM_STAT_MAXMANAPOINTS, value = 180},
+                {param = CONDITION_PARAM_STAT_MAGICPOINTS, value = 1},
+                {param = CONDITION_PARAM_STAT_MAXHITPOINTS, value = 30}
+            }),
+            [{3, 7}] = createBonusCondition(7, { -- paladin Buff 2
+                {param = CONDITION_PARAM_STAT_MAXMANAPOINTS, value = 90},
+                {param = CONDITION_PARAM_SKILL_DISTANCE, value = 1},
+                {param = CONDITION_PARAM_STAT_MAXHITPOINTS, value = 40}
+            }),
+            [{4, 8}] = createBonusCondition(8, { -- knight Buff 2
+                {param = CONDITION_PARAM_STAT_MAXMANAPOINTS, value = 30},
+                {param = CONDITION_PARAM_SKILL_SHIELD, value = 1},
+                {param = CONDITION_PARAM_SKILL_AXE, value = 1},
+                {param = CONDITION_PARAM_SKILL_SWORD, value = 1},
+                {param = CONDITION_PARAM_SKILL_CLUB, value = 1},
+                {param = CONDITION_PARAM_STAT_MAXHITPOINTS, value = 90}
+            })
+        }
+    },
+    [3] = {
+        vocations = {
+            [{1, 5}] = createBonusCondition(9, { -- sorcerer Buff 3
+                {param = CONDITION_PARAM_STAT_MAXMANAPOINTS, value = 240},
+                {param = CONDITION_PARAM_STAT_MAGICPOINTS, value = 2},
+                {param = CONDITION_PARAM_STAT_MAXHITPOINTS, value = 40}
+            }),
+            [{2, 6}] = createBonusCondition(10, { -- druid Buff 3
+                {param = CONDITION_PARAM_STAT_MAXMANAPOINTS, value = 240},
+                {param = CONDITION_PARAM_STAT_MAGICPOINTS, value = 2},
+                {param = CONDITION_PARAM_STAT_MAXHITPOINTS, value = 40}
+            }),
+            [{3, 7}] = createBonusCondition(11, { -- paladin Buff 3
+                {param = CONDITION_PARAM_STAT_MAXMANAPOINTS, value = 120},
+                {param = CONDITION_PARAM_STAT_MAGICPOINTS, value = 1},
+                {param = CONDITION_PARAM_SKILL_DISTANCE, value = 2},
+                {param = CONDITION_PARAM_STAT_MAXHITPOINTS, value = 80}
+            }),
+            [{4, 8}] = createBonusCondition(12, { -- knight Buff 3
+                {param = CONDITION_PARAM_STAT_MAXMANAPOINTS, value = 40},
+                {param = CONDITION_PARAM_STAT_MAGICPOINTS, value = 1},
+                {param = CONDITION_PARAM_SKILL_SHIELD, value = 2},
+                {param = CONDITION_PARAM_SKILL_AXE, value = 2},
+                {param = CONDITION_PARAM_SKILL_SWORD, value = 2},
+                {param = CONDITION_PARAM_SKILL_CLUB, value = 2},
+                {param = CONDITION_PARAM_STAT_MAXHITPOINTS, value = 120}
+            })
+        }
+    },
+    [4] = {
+        vocations = {
+            [{1, 5}] = createBonusCondition(13, { -- sorcerer Buff 4
+                {param = CONDITION_PARAM_STAT_MAXMANAPOINTS, value = 300},
+                {param = CONDITION_PARAM_STAT_MAGICPOINTS, value = 3},
+                {param = CONDITION_PARAM_STAT_MAXHITPOINTS, value = 50}
+            }),
+            [{2, 6}] = createBonusCondition(14, { -- druid Buff 4
+                {param = CONDITION_PARAM_STAT_MAXMANAPOINTS, value = 300},
+                {param = CONDITION_PARAM_STAT_MAGICPOINTS, value = 30},
+                {param = CONDITION_PARAM_STAT_MAXHITPOINTS, value = 50}
+            }),
+            [{3, 7}] = createBonusCondition(15, { -- paladin Buff 4
+                {param = CONDITION_PARAM_STAT_MAXMANAPOINTS, value = 150},
+                {param = CONDITION_PARAM_STAT_MAGICPOINTS, value = 1},
+                {param = CONDITION_PARAM_SKILL_DISTANCE, value = 3},
+                {param = CONDITION_PARAM_STAT_MAXHITPOINTS, value = 100}
+            }),
+            [{4, 8}] = createBonusCondition(16, { -- knight Buff 4
+                {param = CONDITION_PARAM_STAT_MAXMANAPOINTS, value = 50},
+                {param = CONDITION_PARAM_STAT_MAGICPOINTS, value = 1},
+                {param = CONDITION_PARAM_SKILL_SHIELD, value = 3},
+                {param = CONDITION_PARAM_SKILL_AXE, value = 3},
+                {param = CONDITION_PARAM_SKILL_SWORD, value = 3},
+                {param = CONDITION_PARAM_SKILL_CLUB, value = 3},
+                {param = CONDITION_PARAM_STAT_MAXHITPOINTS, value = 150}
+            })
+        }
+    },
+}
+ 
+bonusTierSpeed = {
+    [1] = {
+        vocations = {
+            [{1, 5}] = createBonusConditionSpeed(17, 5), -- sorcerer Buff 1
+            [{2, 6}] = createBonusConditionSpeed(18, 5), -- druid Buff 1
+            [{3, 7}] = createBonusConditionSpeed(19, 5), -- paladin Buff 1
+            [{4, 8}] = createBonusConditionSpeed(20, 5) -- knight Buff 1
+        }
+    },
+    [2] = {
+        vocations = {
+            [{1, 5}] = createBonusConditionSpeed(21, 10), -- sorcerer Buff 2
+            [{2, 6}] = createBonusConditionSpeed(22, 10), -- druid Buff 2
+            [{3, 7}] = createBonusConditionSpeed(23, 10), -- paladin Buff 2
+            [{4, 8}] = createBonusConditionSpeed(24, 10) -- knight Buff 2
+        }
+    },
+    [3] = {
+        vocations = {
+            [{1, 5}] = createBonusConditionSpeed(25, 15), -- sorcerer Buff 3
+            [{2, 6}] = createBonusConditionSpeed(26, 15), -- druid Buff 3
+            [{3, 7}] = createBonusConditionSpeed(27, 15), -- paladin Buff 3
+            [{4, 8}] = createBonusConditionSpeed(28, 15) -- knight Buff 3
+        }
+    },
+    [4] = {
+        vocations = {
+            [{1, 5}] = createBonusConditionSpeed(29, 20), -- sorcerer Buff 4
+            [{2, 6}] = createBonusConditionSpeed(30, 20), -- druid Buff 4
+            [{3, 7}] = createBonusConditionSpeed(31, 20), -- paladin Buff 4
+            [{4, 8}] = createBonusConditionSpeed(32, 20) -- knight Buff 4
+        }
+    },
+}
+ 
+outfitBonus = {
+    [136] = bonusTier[4].vocations, [128] = bonusTier[4].vocations, -- Citizen
+    [137] = bonusTier[1].vocations, [129] = bonusTier[1].vocations, -- Hunter
+    [138] = bonusTier[4].vocations, [130] = bonusTier[4].vocations, -- mage
+    [141] = bonusTier[4].vocations, [133] = bonusTier[4].vocations, -- Summoner
+    [148] = bonusTier[4].vocations, [144] = bonusTier[4].vocations, -- Druid
+    [139] = bonusTier[4].vocations, [131] = bonusTier[4].vocations, -- Knight
+    [142] = bonusTier[4].vocations, [134] = bonusTier[4].vocations, -- Warrior
+    [145] = bonusTier[4].vocations, [149] = bonusTier[4].vocations, -- Wizard
+    [152] = bonusTier[4].vocations, [156] = bonusTier[4].vocations, -- Assassin
+    [153] = bonusTier[4].vocations, [157] = bonusTier[4].vocations, -- Beggar
+    [269] = bonusTier[4].vocations, [268] = bonusTier[4].vocations, -- Nightmare
+    [143] = bonusTier[4].vocations, [147] = bonusTier[4].vocations, -- Barbarian
+    [146] = bonusTier[4].vocations, [150] = bonusTier[4].vocations, --Oriental
+    [273] = bonusTier[2].vocations, [270] = bonusTier[2].vocations, -- Jester
+    [324] = bonusTier[2].vocations, [325] = bonusTier[2].vocations, -- Yalaharian
+    [328] = bonusTier[4].vocations, [329] = bonusTier[4].vocations, -- Newly Wed
+    [430] = bonusTier[2].vocations, [431] = bonusTier[2].vocations, -- Afflicted
+    [432] = bonusTier[3].vocations, [433] = bonusTier[3].vocations, -- Elementalist
+    [471] = bonusTier[4].vocations, [472] = bonusTier[4].vocations, -- Entrepreneur
+    [514] = bonusTier[3].vocations, [516] = bonusTier[3].vocations, -- Soil Guardian
+    [578] = bonusTier[3].vocations, [577] = bonusTier[3].vocations, -- Dream Warden
+    [541] = bonusTier[2].vocations, [542] = bonusTier[2].vocations, -- Demon
+    [252] = bonusTier[4].vocations, [251] = bonusTier[4].vocations, -- Norsewoman & Norseman
+    [279] = bonusTier[3].vocations, [278] = bonusTier[3].vocations, -- Brotherhood
+    [154] = bonusTier[4].vocations, [158] = bonusTier[4].vocations, -- Shaman
+    [151] = bonusTier[4].vocations, [155] = bonusTier[4].vocations, -- Pirate
+    [289] = bonusTier[2].vocations, [288] = bonusTier[2].vocations, -- Demon Hunter
+    [1021] = bonusTier[3].vocations, [1020] = bonusTier[3].vocations, -- Herbalist outfit
+    [336] = bonusTier[3].vocations, [335] = bonusTier[3].vocations, -- Warmaster
+    [366] = bonusTier[3].vocations, [367] = bonusTier[3].vocations, -- Wayfarer
+    [464] = bonusTier[3].vocations, [463] = bonusTier[3].vocations, -- Deepling
+    [466] = bonusTier[3].vocations, [465] = bonusTier[3].vocations, -- Insectoid
+    [574] = bonusTier[3].vocations, [575] = bonusTier[3].vocations, -- Cave Explorer
+    [512] = bonusTier[4].vocations, [513] = bonusTier[4].vocations, -- Crystal Warlord
+    [665] = bonusTier[4].vocations, [664] = bonusTier[4].vocations, -- Acolyte
+    [1293] = bonusTier[4].vocations, [1292] = bonusTier[4].vocations, -- Trailblazer
+    [1289] = bonusTier[3].vocations, [1288] = bonusTier[3].vocations, -- Dragon Slayer
+    [1279] = bonusTier[3].vocations, [1280] = bonusTier[3].vocations, -- Herder
+    [1283] = bonusTier[3].vocations, [1282] = bonusTier[3].vocations, -- Falconer
+    [1371] = bonusTier[3].vocations, [1372] = bonusTier[3].vocations, -- Rascoohan
+}
+ 
+outfitBonusSpeed = {
+    [136] = bonusTierSpeed[4].vocations, [128] = bonusTierSpeed[4].vocations, -- Citizen
+    [137] = bonusTierSpeed[4].vocations, [129] = bonusTierSpeed[4].vocations, -- Hunter
+    [138] = bonusTierSpeed[4].vocations, [130] = bonusTierSpeed[4].vocations, -- mage
+    [141] = bonusTierSpeed[4].vocations, [133] = bonusTierSpeed[4].vocations, -- Summoner
+    [148] = bonusTierSpeed[4].vocations, [144] = bonusTierSpeed[4].vocations, -- Druid
+    [139] = bonusTierSpeed[4].vocations, [131] = bonusTierSpeed[4].vocations, -- Knight
+    [142] = bonusTierSpeed[4].vocations, [134] = bonusTierSpeed[4].vocations, -- Warrior
+    [145] = bonusTierSpeed[4].vocations, [149] = bonusTierSpeed[4].vocations, -- Wizard
+    [152] = bonusTierSpeed[4].vocations, [156] = bonusTierSpeed[4].vocations, -- Assassin
+    [153] = bonusTierSpeed[4].vocations, [157] = bonusTierSpeed[4].vocations, -- Beggar
+    [269] = bonusTierSpeed[4].vocations, [268] = bonusTierSpeed[4].vocations, -- Nightmare
+    [143] = bonusTierSpeed[4].vocations, [147] = bonusTierSpeed[4].vocations, -- Barbarian
+    [146] = bonusTierSpeed[4].vocations, [150] = bonusTierSpeed[4].vocations, --Oriental
+    [273] = bonusTierSpeed[2].vocations, [270] = bonusTierSpeed[2].vocations, -- Jester
+    [324] = bonusTierSpeed[2].vocations, [325] = bonusTierSpeed[2].vocations, -- Yalaharian
+    [328] = bonusTierSpeed[4].vocations, [329] = bonusTierSpeed[4].vocations, -- Newly Wed
+    [430] = bonusTierSpeed[2].vocations, [431] = bonusTierSpeed[2].vocations, -- Afflicted
+    [432] = bonusTierSpeed[3].vocations, [433] = bonusTierSpeed[3].vocations, -- Elementalist
+    [471] = bonusTierSpeed[4].vocations, [472] = bonusTierSpeed[4].vocations, -- Entrepreneur
+    [514] = bonusTierSpeed[3].vocations, [516] = bonusTierSpeed[3].vocations, -- Soil Guardian
+    [578] = bonusTierSpeed[3].vocations, [577] = bonusTierSpeed[3].vocations, -- Dream Warden
+    [541] = bonusTierSpeed[2].vocations, [542] = bonusTierSpeed[2].vocations, -- Demon
+    [252] = bonusTierSpeed[4].vocations, [251] = bonusTierSpeed[4].vocations, -- Norsewoman & Norseman
+    [279] = bonusTierSpeed[3].vocations, [278] = bonusTierSpeed[3].vocations, -- Brotherhood
+    [154] = bonusTierSpeed[4].vocations, [158] = bonusTierSpeed[4].vocations, -- Shaman
+    [151] = bonusTierSpeed[4].vocations, [155] = bonusTierSpeed[4].vocations, -- Pirate
+    [289] = bonusTierSpeed[2].vocations, [288] = bonusTierSpeed[2].vocations, -- Demon Hunter
+    [1021] = bonusTierSpeed[3].vocations, [1020] = bonusTierSpeed[3].vocations, -- Herbalist outfit
+    [336] = bonusTierSpeed[3].vocations, [335] = bonusTierSpeed[3].vocations, -- Warmaster
+    [366] = bonusTierSpeed[3].vocations, [367] = bonusTierSpeed[3].vocations, -- Wayfarer
+    [464] = bonusTierSpeed[3].vocations, [463] = bonusTierSpeed[3].vocations, -- Deepling
+    [466] = bonusTierSpeed[3].vocations, [465] = bonusTierSpeed[3].vocations, -- Insectoid
+    [574] = bonusTierSpeed[3].vocations, [575] = bonusTierSpeed[3].vocations, -- Cave Explorer
+    [512] = bonusTierSpeed[4].vocations, [513] = bonusTierSpeed[4].vocations, -- Crystal Warlord
+    [665] = bonusTierSpeed[4].vocations, [664] = bonusTierSpeed[4].vocations, -- Acolyte
+    [1293] = bonusTierSpeed[3].vocations, [1292] = bonusTierSpeed[3].vocations, -- Trailblazer
+    [1289] = bonusTierSpeed[3].vocations, [1288] = bonusTierSpeed[3].vocations, -- Dragon Slayer
+    [1279] = bonusTierSpeed[3].vocations, [1280] = bonusTierSpeed[3].vocations, -- Herder
+    [1283] = bonusTierSpeed[3].vocations, [1282] = bonusTierSpeed[3].vocations, -- Falconer
+    [1371] = bonusTierSpeed[3].vocations, [1372] = bonusTierSpeed[3].vocations, -- Rascoohan
+    [1210] = bonusTierSpeed[4].vocations, [1211] = bonusTierSpeed[4].vocations, -- Golden Outfit
+}
+ 
+function getBonusCondition(outfit, voc)
+    local bonuTier = outfitBonus[outfit]
+    if not bonuTier then
+        return false
+    end
+ 
+    for vocations, bonus in pairs(bonuTier) do
+        if table.contains(vocations, voc) then
+            return bonus
+        end
+    end
+ 
+    return false
+end
+ 
+function getBonusConditionSpeed(outfit, voc)
+    local bonuTier = outfitBonusSpeed[outfit]
+    if not bonuTier then
+        return false
+    end
+ 
+    for vocations, bonus in pairs(bonuTier) do
+        if table.contains(vocations, voc) then
+            return bonus
+        end
+    end
+ 
+    return false
+end
+-- Functions from The Forgotten Server
+function Creature:onChangeOutfit(outfit)
+    if self:isPlayer() then
+        local familiarLookType = self:getFamiliarLooktype()
+        if familiarLookType ~= 0 then
+            for _, summon in pairs(self:getSummons()) do
+                if summon:getType():isPet() then
+                        if summon:getOutfit().lookType ~= familiarLookType then
+                            summon:setOutfit({lookType = familiarLookType})
+                        end
+                    break
+                end
+            end
+        end
+    end
+    return true
+end
+
+function Creature:onAreaCombat(tile, isAggressive)
+    return RETURNVALUE_NOERROR
+end
+
+function Creature:onTargetCombat(target)
+    if Creature:isPlayer() and target:isPlayer() then
+        if target:hasSecureMode() then
+            return RETURNVALUE_YOUMAYNOTATTACKTHISCREATURE
+        end
+    end
+    return RETURNVALUE_NOERROR
+end
+
+function Creature:onHear(speaker, words, type)
+end
+
+-- Functions from OTServBR-Global
+-- function Creature:onAreaCombat(tile, isAggressive)
+    -- local attacker = creature
+    -- local affecteds = tileCreatures[i]
+        -- for k = 1, #affecteds do
+        -- local affected = affecteds[k]
+            -- if affected:isPlayer() and attacker:isPlayer() then
+                -- if affected:hasSecureMode() then
+                    -- return RETURNVALUE_YOUMAYNOTATTACKTHISCREATURE
+                -- end
+            -- end
+        -- end      
+    -- return true
+-- end
+function Creature:onAreaCombat(tile, isAggressive)
+    return true
+end
+
+local function removeCombatProtection(cid)
+    local player = Player(cid)
+    if not player then
+        return true
+    end
+
+    local time = 0
+    if player:isMage() then
+        time = 10
+    elseif player:isPaladin() then
+        time = 20
+    else
+        time = 30
+    end
+
+    player:setStorageValue(Storage.combatProtectionStorage, 2)
+    addEvent(function(cid)
+        local player = Player(cid)
+        if not player then
+            return
+        end
+
+        player:setStorageValue(Storage.combatProtectionStorage, 0)
+        player:remove()
+    end, time * 1000, cid)
+end
+
+picIf = {}
+function Creature:onTargetCombat(target)
+    if not self then
+        return true
+    end
+
+    if not picIf[target.uid] then
+        if target:isMonster() then
+            target:registerEvent("RewardSystemSlogan")
+            picIf[target.uid] = {}
+        end
+    end
+
+    if target:isPlayer() then
+        if self:isMonster() then
+            local protectionStorage = target:getStorageValue(Storage.combatProtectionStorage)
+
+            if target:getIp() == 0 then -- If player is disconnected, monster shall ignore to attack the player
+                if target:isPzLocked() then return true end
+                if protectionStorage <= 0 then
+                    addEvent(removeCombatProtection, 30 * 1000, target.uid)
+                    target:setStorageValue(Storage.combatProtectionStorage, 1)
+                elseif protectionStorage == 1 then
+                    self:searchTarget()
+                    return RETURNVALUE_YOUMAYNOTATTACKTHISPLAYER
+                end
+
+                return true
+            end
+
+            if protectionStorage >= os.time() then
+                return RETURNVALUE_YOUMAYNOTATTACKTHISPLAYER
+            end
+        end
+    end
+
+    if ((target:isMonster() and self:isPlayer() and target:getMaster() == self)
+    or (self:isMonster() and target:isPlayer() and self:getMaster() == target)) then    return RETURNVALUE_YOUMAYNOTATTACKTHISCREATURE
+    end
+
+    if PARTY_PROTECTION ~= 0 then
+        if self:isPlayer() and target:isPlayer() then
+            local party = self:getParty()
+            if party then
+                local targetParty = target:getParty()
+                if targetParty and targetParty == party then
+                    return RETURNVALUE_YOUMAYNOTATTACKTHISPLAYER
+                end
+            end
+        end
+    end
+
+    if ADVANCED_SECURE_MODE ~= 0 then
+        if self:isPlayer() and target:isPlayer() then
+            if self:hasSecureMode() then
+                return RETURNVALUE_YOUMAYNOTATTACKTHISPLAYER
+            end
+        end
+    end
+    if self:isPlayer() then
+        if target and target:getName() == staminaBonus.target then
+            local playerId = self:getId()
+            if not staminaBonus.eventsTrainer[playerId] then
+                staminaBonus.eventsTrainer[playerId] = addEvent(addStamina, staminaBonus.period, playerId)
+            end
+        end
+    end
+    return true
+end
+
+function Creature:onDrainHealth(attacker, typePrimary, damagePrimary,
+                typeSecondary, damageSecondary, colorPrimary, colorSecondary)
+    if (not self) then
+        return typePrimary, damagePrimary, typeSecondary, damageSecondary, colorPrimary, colorSecondary
+    end
+
+    if (not attacker) then
+        return typePrimary, damagePrimary, typeSecondary, damageSecondary, colorPrimary, colorSecondary
+    end
+
+    -- New prey => Bonus damage
+    if (attacker:isPlayer()) then
+        if (self:isMonster() and not self:getMaster()) then
+            for slot = CONST_PREY_SLOT_FIRST, CONST_PREY_SLOT_THIRD do
+                if (attacker:getPreyCurrentMonster(slot) == self:getName()
+                and attacker:getPreyBonusType(slot) == CONST_BONUS_DAMAGE_BOOST) then
+                    damagePrimary = damagePrimary + math.floor(damagePrimary * (attacker:getPreyBonusValue(slot) / 100))
+                    break
+                end
+            end
+        end
+    -- New prey => Damage reduction
+    elseif (attacker:isMonster()) then
+        if (self:isPlayer()) then
+            local hazardLevel = self:getHazardLevel()
+            if hazardLevel > 0 and attacker:isMonster() and (not attacker:getMaster() or attacker:getMaster():isMonster()) then
+                local extra = HAZARD_LEVEL.CONFIG.EXTRA_BASE_DAMAGE + HAZARD_LEVEL.CONFIG.EXTRA_DAMAGE * (hazardLevel-1)
+                damagePrimary = math.floor(damagePrimary * extra / 100000)
+                damageSecondary = math.floor(damageSecondary * extra / 100000) 
+                if not self:hasCondition(4096, HAZARD_LEVEL.CONFIG.EXHAUST_SUBID) then
+                    if math.random(1, 100000) <= HAZARD_LEVEL.CONFIG.CRITICAL_HIT_CHANCE then
+                        local damage = HAZARD_LEVEL.CONFIG.CRITICAL_HIT_BASE_DAMAGE + (HAZARD_LEVEL.CONFIG.CRITICAL_HIT_EXTRA_DAMAGE  * (hazardLevel-1))
+                        damagePrimary = math.floor(damagePrimary * damage / 100000)
+                        damageSecondary = math.floor(damageSecondary * damage / 100000)
+                        if exString ~= "" then
+                            exString = exString .. ", "
+                        end
+                        exString = exString .. "hazard critical hit"
+                        self:addCondition(HAZARD_LEVEL.EXHAUST_CONDITION)
+                        self:getPosition():sendMagicEffect(CONST_ME_CRITICAL_DAMAGE)
+                    end
+                end
+            end
+            for slot = CONST_PREY_SLOT_FIRST, CONST_PREY_SLOT_THIRD do
+                if (self:getPreyCurrentMonster(slot) == attacker:getName()
+                and self:getPreyBonusType(slot) == CONST_BONUS_DAMAGE_REDUCTION) then
+                    damagePrimary = damagePrimary - math.floor(damagePrimary * (self:getPreyBonusValue(slot) / 100))
+                    break
+                end
+            end
+        end
+    end
+    return typePrimary, damagePrimary, typeSecondary, damageSecondary, colorPrimary, colorSecondary
+end
